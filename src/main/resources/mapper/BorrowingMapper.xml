@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.endlesscreation.spring.mappers.BorrowingMapper">
+
+    <select id="getAllBorrowings" resultType="com.endlesscreation.spring.models.Borrowing">
+        SELECT * FROM borrow;
+    </select>
+
+    <select id="getBorrowingById" resultType="com.endlesscreation.spring.models.Borrowing">
+        SELECT * FROM borrow WHERE id = #{borrowingId};
+    </select>
+
+    <select id="getBorrowingsByMemberId" resultType="com.endlesscreation.spring.models.Borrowing">
+        SELECT * FROM borrow WHERE member_id LIKE #{memberId};
+    </select>
+
+    <select id="getBorrowingsByBookId" resultType="com.endlesscreation.spring.models.Borrowing">
+        SELECT * FROM borrow WHERE book_id = #{bookId};
+    </select>
+
+    <select id="isStillOut" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM borrow WHERE book_id = #{bookId} AND return_time IS NULL;
+    </select>
+
+    <insert id="borrowBook" useGeneratedKeys="true">
+        INSERT INTO borrow(member_id, book_id, start_time, expiry_time)
+            VALUE (#{memberId}, #{bookId}, NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY));
+    </insert>
+
+    <update id="returnBook" useGeneratedKeys="true">
+        UPDATE borrow SET return_time = NOW() WHERE member_id = #{memberId} AND book_id = #{bookId};
+    </update>
+
+    <delete id="deleteBorrowing">
+        DELETE FROM borrow WHERE id = #{borrowingId};
+    </delete>
+
+</mapper>

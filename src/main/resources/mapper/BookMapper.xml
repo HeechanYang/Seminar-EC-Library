@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.endlesscreation.spring.mappers.BookMapper">
+
+    <select id="getAllBooks" resultType="com.endlesscreation.spring.models.Book">
+        SELECT * FROM book;
+    </select>
+
+    <select id="getBookById" resultType="com.endlesscreation.spring.models.Book">
+        SELECT * FROM book WHERE id = #{bookId};
+    </select>
+
+    <select id="getBooksByName" resultType="com.endlesscreation.spring.models.Book">
+        SELECT * FROM book WHERE name LIKE CONCAT('%',#{name},'%');
+    </select>
+
+    <insert id="insertBook" useGeneratedKeys="true" parameterType="com.endlesscreation.spring.models.Book">
+        INSERT INTO book(id, name, author)
+            VALUE (#{id}, #{name}, #{author});
+    </insert>
+
+    <update id="updateBook" useGeneratedKeys="true" parameterType="com.endlesscreation.spring.models.Book">
+        UPDATE book SET name = #{name}, author = #{author} WHERE id LIKE #{bookId};
+    </update>
+
+    <delete id="deleteBook" parameterType="com.endlesscreation.spring.models.Book">
+        DELETE FROM book WHERE id = #{bookId};
+    </delete>
+
+</mapper>

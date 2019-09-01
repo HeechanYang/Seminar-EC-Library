@@ -1,0 +1,877 @@
+{
+	"info": {
+		"_postman_id": "119eeea4-a14a-48b4-b60a-ab0cacc210d1",
+		"name": "Seminar실습",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "calculator",
+			"item": [
+				{
+					"name": "더하기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/calculator/sum?num1=33&num2=6",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"calculator",
+								"sum"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "33"
+								},
+								{
+									"key": "num2",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "빼기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/calculator/subtraction?num1=33&num2=6",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"calculator",
+								"subtraction"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "33"
+								},
+								{
+									"key": "num2",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "곱하기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/calculator/multiplication?num1=33&num2=6",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"calculator",
+								"multiplication"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "33"
+								},
+								{
+									"key": "num2",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "나누기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/calculator/division?num1=33&num2=6",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"calculator",
+								"division"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "33"
+								},
+								{
+									"key": "num2",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "나머지",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/calculator/modular?num1=33&num2=6",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"calculator",
+								"modular"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "33"
+								},
+								{
+									"key": "num2",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "제곱",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/calculator/power?num1=33&num2=6",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"calculator",
+								"power"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "33"
+								},
+								{
+									"key": "num2",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "큰 값",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/calculator/max?num1=33&num2=6",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"calculator",
+								"max"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "33"
+								},
+								{
+									"key": "num2",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "작은 값",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/calculator/min?num1=33&num2=6",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"calculator",
+								"min"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "33"
+								},
+								{
+									"key": "num2",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "랜덤",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/calculator/random",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"calculator",
+								"random"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "string",
+			"item": [
+				{
+					"name": "문자열 합치기",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/string/append?string1=Hello&string2= Spring!",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"string",
+								"append"
+							],
+							"query": [
+								{
+									"key": "string1",
+									"value": "Hello"
+								},
+								{
+									"key": "string2",
+									"value": " Spring!"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "문자열 길이",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/string/length?string=Hello Spring!!",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"string",
+								"length"
+							],
+							"query": [
+								{
+									"key": "string",
+									"value": "Hello Spring!!"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "n번째 문자",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/string/charAt?string=Hello Spring!!&idx=3",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"string",
+								"charAt"
+							],
+							"query": [
+								{
+									"key": "string",
+									"value": "Hello Spring!!"
+								},
+								{
+									"key": "idx",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "문자열 비교",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/string/equals?string1=Hello Spring&string2=Hello Spring!",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"string",
+								"equals"
+							],
+							"query": [
+								{
+									"key": "string1",
+									"value": "Hello Spring"
+								},
+								{
+									"key": "string2",
+									"value": "Hello Spring!"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "member",
+			"item": [
+				{
+					"name": "멤버 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/members",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "멤버 조회 - id로",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/members/13109346",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"members",
+								"13109346"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "멤버 조회 - 이름으로",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/members?name=양",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"members"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "양"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "멤버 삽입",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"id\": \"11111112\",\r\n    \"name\": \"yyy\",\r\n    \"contacts\": \"01092484272\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}:8080/members/",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"members",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "멤버 수정",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"id\": \"11111112\",\r\n    \"name\": \"홍길동\",\r\n    \"contacts\": \"01092484272\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}:8080/members/",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"members",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "멤버 삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:8080/members/11111111",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"members",
+								"11111111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "대출 조회 - 멤버 id로",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:8080/members/13109346/borrowings",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"members",
+								"13109346",
+								"borrowings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "책 대출",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:8080/members/13109346/book/3",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"members",
+								"13109346",
+								"book",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "책 반납",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:8080/members/13109346/book/3",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"members",
+								"13109346",
+								"book",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "book",
+			"item": [
+				{
+					"name": "책 조회",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/books",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "책 조회 - id로",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/books/1",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "책 조회 - 이름으로",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}:8080/books?name=C",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "C"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "책 삽입",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"name\": \"알고리즘 문제 해결 전략\",\r\n    \"author\": \"구종만\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}:8080/books",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "책 수정",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"id\": 4,\r\n    \"name\": \"알고리즘 문제 해결 전략 1\",\r\n    \"author\": \"구종만\"\r\n}"
+						},
+						"url": {
+							"raw": "{{host}}:8080/books/",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "책 삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:8080/books/11111112",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"11111112"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "대출 조회 - 책 id로",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:8080/books/1/borrowings",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"1",
+								"borrowings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "borrowing",
+			"item": [
+				{
+					"name": "대출 조회",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:8080/borrowings",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"borrowings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "대출 조회 - 대출 Id로",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:8080/borrowings/1",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"borrowings",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "대출 삭제",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:8080/borrowings/4",
+							"host": [
+								"{{host}}"
+							],
+							"port": "8080",
+							"path": [
+								"borrowings",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

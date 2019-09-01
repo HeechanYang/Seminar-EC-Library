@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.endlesscreation.spring.mappers.MemberMapper">
+
+    <select id="getAllMembers" resultType="com.endlesscreation.spring.models.Member">
+        SELECT * FROM member;
+    </select>
+
+    <select id="getMemberById" resultType="com.endlesscreation.spring.models.Member">
+        SELECT * FROM member WHERE id = #{id};
+    </select>
+
+    <select id="getMembersByName" resultType="com.endlesscreation.spring.models.Member">
+        SELECT * FROM member WHERE name LIKE CONCAT('%',#{name},'%');
+    </select>
+
+    <insert id="insertMember" useGeneratedKeys="true" parameterType="com.endlesscreation.spring.models.Member">
+        INSERT INTO member(id, name, contacts)
+            VALUE (#{id}, #{name}, #{contacts});
+    </insert>
+
+    <update id="updateMember" useGeneratedKeys="true" parameterType="com.endlesscreation.spring.models.Member">
+        UPDATE member SET name = #{name}, contacts = #{contacts} WHERE id LIKE #{id};
+    </update>
+
+    <delete id="deleteMember" parameterType="com.endlesscreation.spring.models.Member">
+        DELETE FROM member WHERE id = #{id};
+    </delete>
+
+    <select id="getBorrowingList" resultType="com.endlesscreation.spring.models.Borrowing" >
+        SELECT * FROM borrow WHERE member_id LIKE #{memberId};
+    </select>
+
+    <insert id="borrowBook" useGeneratedKeys="true">
+        INSERT INTO borrow(member_id, book_id, start_time, expiry_time)
+            VALUE (#{memberId}, #{bookId}, NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY));
+    </insert>
+
+    <update id="returnBook" useGeneratedKeys="true">
+        UPDATE borrow SET return_time = NOW() WHERE id = #{borrowingId};
+    </update>
+
+</mapper>
