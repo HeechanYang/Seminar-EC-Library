@@ -20,7 +20,7 @@ public class BookController {
         this.borrowingService = borrowingService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<Book> getAllBooks(@RequestParam(value = "name", required = false) String name) {
         if (name != null) {
             return bookService.getBooksByName(name);
@@ -34,12 +34,12 @@ public class BookController {
         return bookService.getBookById(id);
     }
 
-    @PostMapping("")
+    @PostMapping
     public int insertBook(@RequestBody Book book) {
         return bookService.insertBook(book);
     }
 
-    @PutMapping("")
+    @PutMapping
     public int updateBook(@RequestBody Book book) {
         return bookService.updateBook(book);
     }

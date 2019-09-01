@@ -20,7 +20,7 @@ public class MemberController {
         this.borrowingService = borrowingService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<Member> getAllMembers(@RequestParam(value = "name", required = false) String name) {
         if (name != null) {
             return memberService.getMembersByName(name);
@@ -34,12 +34,12 @@ public class MemberController {
         return memberService.getMemberById(id);
     }
 
-    @PostMapping("")
+    @PostMapping
     public int insertMember(@RequestBody Member member) {
         return memberService.insertMember(member);
     }
 
-    @PutMapping("")
+    @PutMapping
     public int updateMember(@RequestBody Member member) {
         return memberService.updateMember(member);
     }

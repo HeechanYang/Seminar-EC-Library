@@ -16,7 +16,7 @@ public class BorrowingController {
         this.borrowingService = borrowingService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<Borrowing> getAllBorrowings(){
         return borrowingService.getAllBorrowings();
     }
