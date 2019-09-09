@@ -1,7 +1,8 @@
 package com.endlesscreation.spring.controllers;
 
+import com.endlesscreation.spring.dtos.SimpleResponse;
 import com.endlesscreation.spring.models.Borrowing;
-import com.endlesscreation.spring.services.BorrowingService;
+import com.endlesscreation.spring.services.in_memory.InMemoryBorrowingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,9 +11,9 @@ import java.util.List;
 @RequestMapping("/borrowings")
 public class BorrowingController {
 
-    private final BorrowingService borrowingService;
+    private final InMemoryBorrowingService borrowingService;
 
-    public BorrowingController(BorrowingService borrowingService) {
+    public BorrowingController(InMemoryBorrowingService borrowingService) {
         this.borrowingService = borrowingService;
     }
 
@@ -27,7 +28,7 @@ public class BorrowingController {
     }
 
     @DeleteMapping("/{borrowingId}")
-    public int deleteBorrowing(@PathVariable("borrowingId") int borrowingId) {
+    public SimpleResponse deleteBorrowing(@PathVariable("borrowingId") int borrowingId) {
         return borrowingService.deleteBorrowing(borrowingId);
     }
 

@@ -1,9 +1,10 @@
 package com.endlesscreation.spring.controllers;
 
+import com.endlesscreation.spring.dtos.SimpleResponse;
 import com.endlesscreation.spring.models.Book;
 import com.endlesscreation.spring.models.Borrowing;
-import com.endlesscreation.spring.services.BookService;
-import com.endlesscreation.spring.services.BorrowingService;
+import com.endlesscreation.spring.services.in_memory.InMemoryBookService;
+import com.endlesscreation.spring.services.in_memory.InMemoryBorrowingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,10 +13,10 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    private final BookService bookService;
-    private final BorrowingService borrowingService;
+    private final InMemoryBookService bookService;
+    private final InMemoryBorrowingService borrowingService;
 
-    public BookController(BookService bookService, BorrowingService borrowingService) {
+    public BookController(InMemoryBookService bookService, InMemoryBorrowingService borrowingService) {
         this.bookService = bookService;
         this.borrowingService = borrowingService;
     }
@@ -35,17 +36,17 @@ public class BookController {
     }
 
     @PostMapping
-    public int insertBook(@RequestBody Book book) {
+    public SimpleResponse insertBook(@RequestBody Book book) {
         return bookService.insertBook(book);
     }
 
-    @PutMapping
-    public int updateBook(@RequestBody Book book) {
-        return bookService.updateBook(book);
+    @PutMapping("/{id}")
+    public SimpleResponse updateBook(@PathVariable("id") int id, @RequestBody Book book) {
+        return bookService.updateBook(id, book);
     }
 
     @DeleteMapping("/{id}")
-    public int deleteBook(@PathVariable("id") int id) {
+    public SimpleResponse deleteBook(@PathVariable("id") int id) {
         return bookService.deleteBook(id);
     }
 

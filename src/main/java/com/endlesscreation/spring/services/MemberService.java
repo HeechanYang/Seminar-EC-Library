@@ -1,113 +1,45 @@
 package com.endlesscreation.spring.services;
 
+import com.endlesscreation.spring.dtos.SimpleResponse;
+import com.endlesscreation.spring.mappers.MemberMapper;
 import com.endlesscreation.spring.models.Member;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class MemberService {
 
-    private List<Member> members;
+    private final MemberMapper memberMapper;
 
-    public MemberService() {
-        members = new ArrayList<>();
+    public MemberService(MemberMapper memberMapper) {
+        this.memberMapper = memberMapper;
     }
 
     public List<Member> getAllMembers() {
-        return this.members;
+        return memberMapper.getAllMembers();
     }
 
     public Member getMemberById(String id) {
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getId().equals(id)) {
-                return members.get(i);
-            }
-        }
-
-        return null;
+        return memberMapper.getMemberById(id);
     }
 
     public List<Member> getMembersByName(String name) {
-        List<Member> result = new ArrayList<>();
-
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getName().contains(name)) {
-                result.add(members.get(i));
-            }
-        }
-
-        return result;
+        return memberMapper.getMembersByName(name);
     }
 
-    public int insertMember(Member member) {
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getId().equals(member.getId())) {
-                // 이미 존재하는 id면 -1 반환
-                return -1;
-            }
-        }
-
-        members.add(member);
-
-        return members.size();
+    public SimpleResponse insertMember(Member member) {
+        int result = memberMapper.insertMember(member);
+        return result > 0 ? SimpleResponse.SUCCESS : SimpleResponse.FAIL;
     }
 
-    public int updateMember(Member member) {
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getId().equals(member.getId())) {
-                members.get(i).setName(member.getName());
-                members.get(i).setContacts(member.getContacts());
-                // 업데이트 되었으면 index 반환
-                return i;
-            }
-        }
-
-        // 업데이트된 것이 없으면 0 반환
-        return 0;
+    public SimpleResponse updateMember(Member member) {
+        int result = memberMapper.updateMember(member);
+        return result > 0 ? SimpleResponse.SUCCESS : SimpleResponse.FAIL;
     }
 
-    public int deleteMember(String id) {
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getId().equals(id)) {
-                members.remove(i);
-                // 삭제 되었으면 index 반환
-                return i;
-            }
-        }
-
-        // 삭제된 것이 없으면 0 반환
-        return 0;
+    public SimpleResponse deleteMember(String id) {
+        int result = memberMapper.deleteMember(id);
+        return result > 0 ? SimpleResponse.SUCCESS : SimpleResponse.FAIL;
     }
-
-//    private final MemberMapper memberMapper;
-//
-//    public MemberService(MemberMapper memberMapper) {
-//        this.memberMapper = memberMapper;
-//    }
-//
-//    public List<Member> getAllMembers(){
-//        return memberMapper.getAllMembers();
-//    }
-//
-//    public Member getMemberById(String id){
-//        return memberMapper.getMemberById(id);
-//    }
-//
-//    public List<Member> getMembersByName(String name){
-//        return memberMapper.getMembersByName(name);
-//    }
-//
-//    public int insertMember(Member member){
-//        return memberMapper.insertMember(member);
-//    }
-//
-//    public int updateMember(Member member){
-//        return memberMapper.updateMember(member);
-//    }
-//
-//    public int deleteMember(String id){
-//        return memberMapper.deleteMember(id);
-//    }
 }

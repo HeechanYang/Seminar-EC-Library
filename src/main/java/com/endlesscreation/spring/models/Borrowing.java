@@ -13,6 +13,20 @@ public class Borrowing {
     private Member member;
     private Book book;
 
+    public Borrowing() {
+    }
+
+    public Borrowing(int id, String memberId, int bookId, LocalDateTime startTime, LocalDateTime expiryTime, LocalDateTime returnTime, Member member, Book book) {
+        this.id = id;
+        this.memberId = memberId;
+        this.bookId = bookId;
+        this.startTime = startTime;
+        this.expiryTime = expiryTime;
+        this.returnTime = returnTime;
+        this.member = member;
+        this.book = book;
+    }
+
     public int getId() {
         return id;
     }

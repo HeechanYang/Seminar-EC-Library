@@ -1,9 +1,10 @@
 package com.endlesscreation.spring.controllers;
 
+import com.endlesscreation.spring.dtos.SimpleResponse;
 import com.endlesscreation.spring.models.Borrowing;
 import com.endlesscreation.spring.models.Member;
-import com.endlesscreation.spring.services.BorrowingService;
-import com.endlesscreation.spring.services.MemberService;
+import com.endlesscreation.spring.services.in_memory.InMemoryBorrowingService;
+import com.endlesscreation.spring.services.in_memory.InMemoryMemberService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,10 +13,10 @@ import java.util.List;
 @RequestMapping("/members")
 public class MemberController {
 
-    private final MemberService memberService;
-    private final BorrowingService borrowingService;
+    private final InMemoryMemberService memberService;
+    private final InMemoryBorrowingService borrowingService;
 
-    public MemberController(MemberService memberService, BorrowingService borrowingService) {
+    public MemberController(InMemoryMemberService memberService, InMemoryBorrowingService borrowingService) {
         this.memberService = memberService;
         this.borrowingService = borrowingService;
     }
@@ -35,17 +36,17 @@ public class MemberController {
     }
 
     @PostMapping
-    public int insertMember(@RequestBody Member member) {
+    public SimpleResponse insertMember(@RequestBody Member member) {
         return memberService.insertMember(member);
     }
 
-    @PutMapping
-    public int updateMember(@RequestBody Member member) {
-        return memberService.updateMember(member);
+    @PutMapping("/{id}")
+    public SimpleResponse updateMember(@PathVariable("id") String id, @RequestBody Member member) {
+        return memberService.updateMember(id, member);
     }
 
     @DeleteMapping("/{id}")
-    public int deleteMember(@PathVariable("id") String id) {
+    public SimpleResponse deleteMember(@PathVariable("id") String id) {
         return memberService.deleteMember(id);
     }
 
@@ -55,12 +56,12 @@ public class MemberController {
     }
 
     @PostMapping("{memberId}/book/{bookId}")
-    public int borrowBook(@PathVariable("memberId") String memberId, @PathVariable("bookId") int bookId) {
+    public SimpleResponse borrowBook(@PathVariable("memberId") String memberId, @PathVariable("bookId") int bookId) {
         return borrowingService.borrowBook(memberId, bookId);
     }
 
     @PutMapping("{memberId}/book/{bookId}")
-    public int returnBook(@PathVariable("memberId") String memberId, @PathVariable("bookId") int bookId) {
+    public SimpleResponse returnBook(@PathVariable("memberId") String memberId, @PathVariable("bookId") int bookId) {
         return borrowingService.returnBook(memberId, bookId);
     }
 
