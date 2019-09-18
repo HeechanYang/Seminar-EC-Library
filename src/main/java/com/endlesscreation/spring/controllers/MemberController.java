@@ -62,6 +62,7 @@ public class MemberController {
 
     @PutMapping("{memberId}/book/{bookId}")
     public SimpleResponse returnBook(@PathVariable("memberId") String memberId, @PathVariable("bookId") int bookId) {
+        System.out.println("branch test");
         return borrowingService.returnBook(memberId, bookId);
     }
 
