@@ -2,9 +2,8 @@ package com.endlesscreation.spring.controllers;
 
 import com.endlesscreation.spring.dtos.SimpleResponse;
 import com.endlesscreation.spring.models.Book;
-import com.endlesscreation.spring.models.Borrowing;
-import com.endlesscreation.spring.services.in_memory.InMemoryBookService;
-import com.endlesscreation.spring.services.in_memory.InMemoryBorrowingService;
+import com.endlesscreation.spring.services.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,12 +12,11 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    private final InMemoryBookService bookService;
-    private final InMemoryBorrowingService borrowingService;
+    @Autowired
+    private final BookService bookService;
 
-    public BookController(InMemoryBookService bookService, InMemoryBorrowingService borrowingService) {
+    public BookController(BookService bookService) {
         this.bookService = bookService;
-        this.borrowingService = borrowingService;
     }
 
     @GetMapping
@@ -48,11 +46,6 @@ public class BookController {
     @DeleteMapping("/{id}")
     public SimpleResponse deleteBook(@PathVariable("id") int id) {
         return bookService.deleteBook(id);
-    }
-
-    @GetMapping("/{bookId}/borrowings")
-    public List<Borrowing> getBorrowingsByBookId(@PathVariable("bookId") int bookId) {
-        return borrowingService.getBorrowingsByBookId(bookId);
     }
 
 }

@@ -1,10 +1,8 @@
 package com.endlesscreation.spring.controllers;
 
 import com.endlesscreation.spring.dtos.SimpleResponse;
-import com.endlesscreation.spring.models.Borrowing;
 import com.endlesscreation.spring.models.Member;
-import com.endlesscreation.spring.services.in_memory.InMemoryBorrowingService;
-import com.endlesscreation.spring.services.in_memory.InMemoryMemberService;
+import com.endlesscreation.spring.services.MemberService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,12 +11,10 @@ import java.util.List;
 @RequestMapping("/members")
 public class MemberController {
 
-    private final InMemoryMemberService memberService;
-    private final InMemoryBorrowingService borrowingService;
+    private final MemberService memberService;
 
-    public MemberController(InMemoryMemberService memberService, InMemoryBorrowingService borrowingService) {
+    public MemberController(MemberService memberService) {
         this.memberService = memberService;
-        this.borrowingService = borrowingService;
     }
 
     @GetMapping
@@ -50,19 +46,19 @@ public class MemberController {
         return memberService.deleteMember(id);
     }
 
-    @GetMapping("{memberId}/borrowings")
-    public List<Borrowing> getBorrowingList(@PathVariable("memberId") String memberId) {
-        return borrowingService.getBorrowingsByMemberId(memberId);
-    }
-
-    @PostMapping("{memberId}/book/{bookId}")
-    public SimpleResponse borrowBook(@PathVariable("memberId") String memberId, @PathVariable("bookId") int bookId) {
-        return borrowingService.borrowBook(memberId, bookId);
-    }
-
-    @PutMapping("{memberId}/book/{bookId}")
-    public SimpleResponse returnBook(@PathVariable("memberId") String memberId, @PathVariable("bookId") int bookId) {
-        return borrowingService.returnBook(memberId, bookId);
-    }
+//    @GetMapping("{memberId}/borrowings")
+//    public List<Borrowing> getBorrowingList(@PathVariable("memberId") String memberId) {
+//        return borrowingService.getBorrowingsByMemberId(memberId);
+//    }
+//
+//    @PostMapping("{memberId}/book/{bookId}")
+//    public SimpleResponse borrowBook(@PathVariable("memberId") String memberId, @PathVariable("bookId") int bookId) {
+//        return borrowingService.borrowBook(memberId, bookId);
+//    }
+//
+//    @PutMapping("{memberId}/book/{bookId}")
+//    public SimpleResponse returnBook(@PathVariable("memberId") String memberId, @PathVariable("bookId") int bookId) {
+//        return borrowingService.returnBook(memberId, bookId);
+//    }
 
 }

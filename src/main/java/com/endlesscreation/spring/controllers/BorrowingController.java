@@ -1,8 +1,8 @@
 package com.endlesscreation.spring.controllers;
 
-import com.endlesscreation.spring.dtos.SimpleResponse;
 import com.endlesscreation.spring.models.Borrowing;
-import com.endlesscreation.spring.services.in_memory.InMemoryBorrowingService;
+import com.endlesscreation.spring.services.BorrowingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,25 +11,30 @@ import java.util.List;
 @RequestMapping("/borrowings")
 public class BorrowingController {
 
-    private final InMemoryBorrowingService borrowingService;
-
-    public BorrowingController(InMemoryBorrowingService borrowingService) {
-        this.borrowingService = borrowingService;
-    }
+    @Autowired
+    private BorrowingService borrowingService;
 
     @GetMapping
     public List<Borrowing> getAllBorrowings(){
-        return borrowingService.getAllBorrowings();
+        return borrowingService.getAllBorrowing();
     }
 
-    @GetMapping("/{borrowingId}")
-    public Borrowing getBorrowingById(@PathVariable("borrowingId") int borrowingId) {
-        return borrowingService.getBorrowingById(borrowingId);
+    @GetMapping("/{id}")
+    public Borrowing getBorrowingById(@PathVariable int id){
+        return borrowingService.getBorrowingById(id);
     }
 
-    @DeleteMapping("/{borrowingId}")
-    public SimpleResponse deleteBorrowing(@PathVariable("borrowingId") int borrowingId) {
-        return borrowingService.deleteBorrowing(borrowingId);
+    @PostMapping("/{memberId}/{bookId}")
+    public void borrow(@PathVariable String memberId, @PathVariable int bookId){
+        borrowingService.borrow(memberId, bookId);
     }
+
+    @PutMapping("/{memberId}/{bookId}")
+    public void returnBook(@PathVariable String memberId, @PathVariable int bookId){
+        borrowingService.returnBook(memberId, bookId);
+    }
+
+
+
 
 }

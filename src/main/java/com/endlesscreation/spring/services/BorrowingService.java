@@ -1,80 +1,64 @@
 package com.endlesscreation.spring.services;
 
-import com.endlesscreation.spring.mappers.BookMapper;
-import com.endlesscreation.spring.mappers.BorrowingMapper;
-import com.endlesscreation.spring.mappers.MemberMapper;
+import com.endlesscreation.spring.models.Book;
 import com.endlesscreation.spring.models.Borrowing;
-import org.apache.ibatis.annotations.Param;
+import com.endlesscreation.spring.models.Member;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class BorrowingService {
 
-    private final BorrowingMapper borrowingMapper;
-    private final MemberMapper memberMapper;
-    private final BookMapper bookMapper;
+    private List<Borrowing> borrowings;
+    @Autowired
+    private MemberService memberService;
+    @Autowired
+    private BookService bookService;
 
-    public BorrowingService(BorrowingMapper borrowingMapper, MemberMapper memberMapper, BookMapper bookMapper) {
-        this.borrowingMapper = borrowingMapper;
-        this.memberMapper = memberMapper;
-        this.bookMapper = bookMapper;
+
+    public BorrowingService() {
+        borrowings = new ArrayList<>();
     }
 
-    public List<Borrowing> getAllBorrowings() {
-        List<Borrowing> borrowingList = borrowingMapper.getAllBorrowings();
-        return setMemberAndBook(borrowingList);
+    public List<Borrowing> getAllBorrowing() {
+        return this.borrowings;
     }
 
     public Borrowing getBorrowingById(int borrowingId) {
-        Borrowing borrowing = borrowingMapper.getBorrowingById(borrowingId);
-        if (borrowing != null) {
-            borrowing.setMember(memberMapper.getMemberById(borrowing.getMemberId()));
-            borrowing.setBook(bookMapper.getBookById(borrowing.getBookId()));
+        for (Borrowing borrowing : borrowings) {
+            if (borrowing.getId() == borrowingId) {
+                return borrowing;
+            }
         }
-        return borrowing;
+
+        return null;
     }
 
-    public List<Borrowing> getBorrowingsByMemberId(String memberId) {
-        List<Borrowing> borrowingList = borrowingMapper.getBorrowingsByMemberId(memberId);
-        return setMemberAndBook(borrowingList);
+    public void borrow(String memberId, int bookId) {
+        Member member = memberService.getMemberById(memberId);
+        Book book = bookService.getBookById(bookId);
+
+        Borrowing borrowing = new Borrowing();
+        borrowing.setId(borrowings.size());
+        borrowing.setMember(member);
+        borrowing.setBook(book);
+        borrowing.setStartTime(new Date());
+
+        borrowings.add(borrowing);
     }
 
-    public List<Borrowing> getBorrowingsByBookId(int bookId) {
-        List<Borrowing> borrowingList = borrowingMapper.getBorrowingsByBookId(bookId);
-        return setMemberAndBook(borrowingList);
-    }
+    public void returnBook(String memberId, int bookId){
+        for(Borrowing borrowing : borrowings) {
+            String mMemberId = borrowing.getMember().getId();
+            int mBookId = borrowing.getBook().getId();
 
-    public int borrowBook(String memberId, int bookId) {
-        if (!isStillOut(bookId)) {
-            return borrowingMapper.borrowBook(memberId, bookId);
-        } else {
-            return -1;
+            if (mMemberId.equals(memberId) && mBookId == bookId) {
+                borrowing.setReturnTime(new Date());
+            }
         }
-    }
-
-    public int returnBook(@Param("memberId") String memberId, @Param("bookId") int bookId) {
-        if (isStillOut(bookId)) {
-            return borrowingMapper.returnBook(memberId, bookId);
-        } else {
-            return -1;
-        }
-    }
-
-    public int deleteBorrowing(int borrowingId) {
-        return borrowingMapper.deleteBorrowing(borrowingId);
-    }
-
-    public boolean isStillOut(int bookId) {
-        return borrowingMapper.isStillOut(bookId) > 0;
-    }
-
-    private List<Borrowing> setMemberAndBook(List<Borrowing> borrowingList) {
-        for (Borrowing borrowing : borrowingList) {
-            borrowing.setMember(memberMapper.getMemberById(borrowing.getMemberId()));
-            borrowing.setBook(bookMapper.getBookById(borrowing.getBookId()));
-        }
-        return borrowingList;
     }
 }
